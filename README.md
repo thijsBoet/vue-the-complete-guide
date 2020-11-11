@@ -14,11 +14,11 @@ https://www.udemy.com/course/vuejs-2-the-complete-guide/
 -Svelte
 
 ## Vue Syntax
--Create App
+#### Create App
 ```javascript
 Vue.createApp();
 ```
-###### Add data
+#### Add data
 ```javascript
 Vue.createApp({
   data() {
@@ -29,7 +29,7 @@ Vue.createApp({
   },
 });
 ```
-###### Add methods and mount component on html element
+#### Add methods and mount component on html element
 ```javascript
 const app = Vue.createApp({
   data() {
@@ -46,7 +46,7 @@ const app = Vue.createApp({
   },
 }).mount("#app");
 ```
-###### Mounted app, v-on:click and v-for HTML VUE bindings
+#### Mounted app, v-on:click and v-for HTML VUE bindings
 ```HTML
 <div id="app">
   <div>
