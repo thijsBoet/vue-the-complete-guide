@@ -4,21 +4,21 @@ Created by Maximilian Schwarzmüller
 https://www.udemy.com/course/vuejs-2-the-complete-guide/
 
 ## Vue advantages
--Not reinventing the wheel
--Faster rendering e.g. shadowDOM and page re-renders
--Easier working in a team due to common practices
+* Not reinventing the wheel
+* Faster rendering e.g. shadowDOM and page re*renders
+* Easier working in a team due to common practices
 
 ## Vue Alternatives
--React
--Angular
--Svelte
+* React
+* Angular
+* Svelte
 
 ## Vue Syntax
-#### Create App
+### Create App
 ```javascript
 Vue.createApp();
 ```
-#### Add data
+### Add data
 ```javascript
 Vue.createApp({
   data() {
@@ -29,7 +29,7 @@ Vue.createApp({
   },
 });
 ```
-#### Add methods and mount component on html element
+### Add methods and mount component on html element
 ```javascript
 const app = Vue.createApp({
   data() {
@@ -46,7 +46,7 @@ const app = Vue.createApp({
   },
 }).mount("#app");
 ```
-#### Mounted app, v-on:click and v-for HTML VUE bindings
+### Mounted app, v-on:click and v-for HTML VUE bindings
 ```HTML
 <div id="app">
   <div>
