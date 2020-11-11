@@ -5,15 +5,15 @@ https://www.udemy.com/course/vuejs-2-the-complete-guide/
 
 ## Vue advantages
 * Not reinventing the wheel
-* Faster rendering e.g. shadowDOM and page re*renders
-* Easier working in a team due to common practices
+* Faster rendering e.g. shadowDOM and less page re-renders
+* Easier working in a team due to best practices and common features
 
 ## Vue Alternatives
 * React
 * Angular
 * Svelte
 
-## Vue Syntax
+## Vue Basic Setup
 ### Create App
 ```javascript
 Vue.createApp();
@@ -42,13 +42,17 @@ const app = Vue.createApp({
   },
   methods: {
     addGoal() {
+```
+* To reference variables use the this keyword
+```javascript
       this.goals.push(this.enteredValue);
       this.enteredValue = "";
     }
   },
 }).mount("#app");
 ```
-### Mounted app, v-on:click and v-for HTML VUE bindings
+## Vue Data Binding
+### v-on:click (e listener) and v-for (for in loop) HTML VUE bindings
 ```HTML
 <div id="app">
   <div>
@@ -66,6 +70,14 @@ const app = Vue.createApp({
 <li v-for="goal in goals">{{ goal }}</li>
 ```
 ### Render attributes in HTML
+All values not between HTML tags must have a v-for: tag added
 ```javascript
 <a v-bind:href="vueLink">about Vue</a>
+```
+### Render HTML in variables
+* To prevent cross-side scripting attacks HTML tags are ignored in variables
+* To circumvent this use the v-html="" directive
+```javascript
+const HTMLtags = "<h2>Heading</h2>"
+<p v-html="vueLink">{{ HTMLtags }}</p>
 ```
