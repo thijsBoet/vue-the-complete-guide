@@ -25,6 +25,7 @@ Vue.createApp({
     return {
       enteredValue: "",
       courseGoals: ["Finish the course and learn Vue!"],
+      vueLink: "https://vuejs.org/",
     };
   },
 });
@@ -36,6 +37,7 @@ const app = Vue.createApp({
     return {
       enteredValue: "",
       courseGoals: ["Finish the course and learn Vue!"],
+      vueLink: "https://vuejs.org/",
     };
   },
   methods: {
@@ -58,4 +60,12 @@ const app = Vue.createApp({
     <li v-for="goal in goals">{{ goal }}</li>
   </ul>
 </div>
+```
+### Render Values between HTML tags
+```javascript
+<li v-for="goal in goals">{{ goal }}</li>
+```
+### Render attributes in HTML
+```javascript
+<a v-bind:href="vueLink">about Vue</a>
 ```
