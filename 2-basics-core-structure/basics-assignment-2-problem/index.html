@@ -14,34 +14,20 @@
   </head>
   <body>
     <header>
-      <h1>Vue Events</h1>
+      <h1>Events</h1>
     </header>
-    <section id="events">
-      <h2>Events in Action</h2>
-
-      <button v-on:click="reduce(5)" v-on:click.middle="reduce(1)">
-        Subtract 5
-      </button>
-      <button v-on:click="reset">Reset</button>
-      <button v-on:click="add(5)" v-on:click.middle="reduce(1)">Add 5</button>
-
-      <p>Result: {{ counter }}</p>
-      <p v-once>Locked starting value: {{ counter }}</p>
-
-      <input
-        type="text"
-        v-on:input="setName"
-        v-on:keydown.enter="setConfirmedName"
-      />
-
-      <p>Your Name: {{name}}</p>
-      <p>Your &lt;ENTER &gt; name: {{confirmedName}}</p>
-
-      <form v-on:submit="submitForm">
-        <label for="last-name">Last name: </label>
-        <input v-on:input="setLastName" type="text" name="name" id="name" />
-        <button type="submit">Submit</button>
-      </form>
+    <section id="assignment">
+      <h2>Event Practice</h2>
+      <!-- 1) Show an alert (any text of your choice) when the button is pressed -->
+      <button v-on:click="clickedMe">Show Alert</button>
+      <hr />
+      <!-- 2) Register the user input on "keydown" and output it in the paragraph (hint: event.target.value helps) -->
+      <input type="text" v-on:input="outputUserInput"/>
+      <p>{{userInput}}</p>
+      <hr />
+      <!-- 3) Repeat 2) but only output the entered value if the ENTER key was pressed -->
+      <input type="text" v-on:keydown.enter="outputUserInputOnEnter"/>
+      <p>{{userInputEnter}}</p>
     </section>
   </body>
 </html>

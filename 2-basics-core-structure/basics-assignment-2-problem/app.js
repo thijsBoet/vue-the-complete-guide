@@ -1,32 +1,22 @@
 const app = Vue.createApp({
   data() {
     return {
-      counter: 0,
-      name: "",
-      lastName: "",
-      confirmedName: "",
-    };
+      alertText: "Clicked ME!",
+      userInput: "",
+      userInputEnter: ""
+    }
   },
   methods: {
-    reduce(num) {
-      this.counter = this.counter - num;
+    clickedMe() {
+      alert(this.alertText);
     },
-    reset() {
-      this.counter = 0;
+    outputUserInput(e) {
+      this.userInput = e.target.value
     },
-    add(num) {
-      this.counter = this.counter + num;
-    },
-    setName(event) {
-      this.name = event.target.value;
-    },
-    setConfirmedName(event) {
-      this.confirmedName = event.target.value;
-    },
-    setLastName(event) {
-      this.lastName = event.target.value;
-    },
+    outputUserInputOnEnter(e) {
+      this.userInputEnter = e.target.value;
+    }
   },
 });
 
-app.mount('#events');
+app.mount("#assignment");

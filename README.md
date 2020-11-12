@@ -53,7 +53,7 @@ const app = Vue.createApp({
 ```
 ## Vue Data Binding
 ### v-on:click (e listener) and v-for (for in loop) HTML VUE bindings
-```HTML
+```html
 <div id="app">
   <div>
     <label for="goal">Goal</label>
@@ -66,12 +66,12 @@ const app = Vue.createApp({
 </div>
 ```
 ### Render Values between HTML tags
-```javascript
+```html
 <li v-for="goal in goals">{{ goal }}</li>
 ```
 ### Render attributes in HTML
 All values not between HTML tags must have a v-for: tag added
-```javascript
+```html
 <a v-bind:href="vueLink">about Vue</a>
 ```
 ### Render HTML in variables
@@ -83,19 +83,40 @@ const HTMLtags = "<h2>Heading</h2>"
 ```
 ## Vue event listeners and directives
 * To use an event listener on a HTML tag, add the v-on:event as an attribute
-```javascript
+```html
 <button v-on:click="addGoal">Add Goal</button>
 ```
 * Directives can be added to further specify behaviour
-```javascript
-// Only when middle mouse button is clicked
+```html
+<!-- Only when middle mouse button is clicked -->
 <button v-on:click.middle="reduce(5)">Add 5</button>
-// Only when ENTER is keydown
+<!-- Only when ENTER is keydown -->
 <button v-on:keydown.enter="addGoal">Add Goal</button>
-// Other Vue key codes: .enter .tab .tab .delete .esc .space .up .down .left .right
+<!-- Other Vue key codes: .enter .tab .tab .delete .esc .space .up .down .left .right -->
 ```
 * Event modifiers can modify the way events are executed, like prevent default or stop propagation.
-```javascript
+```html
 <form v-on:submit.prevent="submitForm">
 <form v-on:submit.stop="submitForm">
 ```
+## Two way data binding 
+* The v-model shorthand can establish two way binding (both listening and writing on the value)
+```html
+<!-- longhand -->
+<input type="text" v-bind:value="variableValue" v-on:input="inputVariableEvent">
+<!-- shorthand -->
+<input type="text" v-model="variableName">
+```
+* Executing methods in the HTML code results in reloading everything on every event, because Vue cannot tell its dependencies. 
+```html
+<p>Your Name: {{fullname()}}</p>
+```
+* To prevent this use computed methods in the createApp object.
+```javascript
+  computed: {
+    fullname() {
+      return this.name !== "" ? this.name + " " + "Boet" : "";
+    },
+  },
+```
+* Don't use () when calling these computed methods
