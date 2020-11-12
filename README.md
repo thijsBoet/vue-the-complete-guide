@@ -40,11 +40,11 @@ const app = Vue.createApp({
       vueLink: "https://vuejs.org/",
     };
   },
-  methods: {
-    addGoal() {
 ```
 * To reference variables use the this keyword
 ```javascript
+  methods: {
+    addGoal() {
       this.goals.push(this.enteredValue);
       this.enteredValue = "";
     }
@@ -80,4 +80,22 @@ All values not between HTML tags must have a v-for: tag added
 ```javascript
 const HTMLtags = "<h2>Heading</h2>"
 <p v-html="vueLink">{{ HTMLtags }}</p>
+```
+## Vue event listeners and directives
+* To use an event listener on a HTML tag, add the v-on:event as an attribute
+```javascript
+<button v-on:click="addGoal">Add Goal</button>
+```
+* Directives can be added to further specify behaviour
+```javascript
+// Only when middle mouse button is clicked
+<button v-on:click.middle="reduce(5)">Add 5</button>
+// Only when ENTER is keydown
+<button v-on:keydown.enter="addGoal">Add Goal</button>
+// Other Vue key codes: .enter .tab .tab .delete .esc .space .up .down .left .right
+```
+* Event modifiers can modify the way events are executed, like prevent default or stop propagation.
+```javascript
+<form v-on:submit.prevent="submitForm">
+<form v-on:submit.stop="submitForm">
 ```
