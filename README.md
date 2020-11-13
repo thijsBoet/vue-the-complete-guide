@@ -107,6 +107,7 @@ const HTMLtags = "<h2>Heading</h2>"
 <!-- shorthand -->
 <input type="text" v-model="variableName">
 ```
+## Computed Methods
 * Executing methods in the HTML code results in reloading everything on every event, because Vue cannot tell its dependencies. 
 ```html
 <p>Your Name: {{fullname()}}</p>
@@ -120,3 +121,36 @@ const HTMLtags = "<h2>Heading</h2>"
   },
 ```
 * Don't use () when calling these computed methods
+## Watchers
+* To have even more control over the variables used in these methods. Use watch methods.
+```javascript
+  watch: {
+    // Value in data object to watch. It's value (this.name) is given as an argument.
+    name(value) {
+      // variables to change when value is changed
+      this.fullname = value + " Gates"
+    }
+  },
+```
+* An new Value and old Value can also be given as two arguments
+```javascript
+watch: {
+    data(newValue, oldValue) {
+      
+    }
+  },
+```
+* Watchers exceed in watching for certain conditions(hence the name)
+```javascript
+watch: {
+  counter(value) {
+  if (value >= 50|| value <=-50) {
+    this.counter = 0;
+  }
+},
+```
+* Examples like sending HTTP request and setting timers are great methods that can be triggered by watchers.
+## Methods vs Computed vs Watch
+* Methods are great for data binding or event binding, they are re-rendered every cycle
+* Computed method are great if you want to calculate some output value dynamically. Data based on depended data that needs to be re-executed when the dependant data changes.
+* Watchers are great when code needs to be executed, because a property changes and you want to specify this change precisely.
