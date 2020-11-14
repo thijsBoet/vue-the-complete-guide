@@ -30,7 +30,7 @@ Vue.createApp({
   },
 });
 ```
-### Add methods and mount component on html element
+### Add methods and mount component on HTML element
 ```javascript
 const app = Vue.createApp({
   data() {
@@ -53,7 +53,7 @@ const app = Vue.createApp({
 ```
 ## Vue Data Binding
 ### v-on:click (e listener) and v-for (for in loop) HTML VUE bindings
-```html
+```HTML
 <div id="app">
   <div>
     <label for="goal">Goal</label>
@@ -66,12 +66,12 @@ const app = Vue.createApp({
 </div>
 ```
 ### Render Values between HTML tags
-```html
+```HTML
 <li v-for="goal in goals">{{ goal }}</li>
 ```
 ### Render attributes in HTML
 All values not between HTML tags must have a v-for: tag added
-```html
+```HTML
 <a v-bind:href="vueLink">about Vue</a>
 ```
 ### Render HTML in variables
@@ -81,13 +81,13 @@ All values not between HTML tags must have a v-for: tag added
 const HTMLtags = "<h2>Heading</h2>"
 <p v-html="vueLink">{{ HTMLtags }}</p>
 ```
-## Vue event listeners and directives
+### Vue event listeners and directives
 * To use an event listener on a HTML tag, add the v-on:event as an attribute
-```html
+```HTML
 <button v-on:click="addGoal">Add Goal</button>
 ```
 * Directives can be added to further specify behaviour
-```html
+```HTML
 <!-- Only when middle mouse button is clicked -->
 <button v-on:click.middle="reduce(5)">Add 5</button>
 <!-- Only when ENTER is keydown -->
@@ -95,21 +95,22 @@ const HTMLtags = "<h2>Heading</h2>"
 <!-- Other Vue key codes: .enter .tab .tab .delete .esc .space .up .down .left .right -->
 ```
 * Event modifiers can modify the way events are executed, like prevent default or stop propagation.
-```html
+```HTML
 <form v-on:submit.prevent="submitForm">
 <form v-on:submit.stop="submitForm">
 ```
 ## Two way data binding 
 * The v-model shorthand can establish two way binding (both listening and writing on the value)
-```html
+```HTML
 <!-- longhand -->
 <input type="text" v-bind:value="variableValue" v-on:input="inputVariableEvent">
 <!-- shorthand -->
 <input type="text" v-model="variableName">
 ```
+### Regular, computed and watch methods
 ## Computed Methods
 * Executing methods in the HTML code results in reloading everything on every event, because Vue cannot tell its dependencies. 
-```html
+```HTML
 <p>Your Name: {{fullname()}}</p>
 ```
 * To prevent this use computed methods in the createApp object.
@@ -154,3 +155,17 @@ watch: {
 * Methods are great for data binding or event binding, they are re-rendered every cycle
 * Computed method are great if you want to calculate some output value dynamically. Data based on depended data that needs to be re-executed when the dependant data changes.
 * Watchers are great when code needs to be executed, because a property changes and you want to specify this change precisely.
+## Shorthand for v-on and v-bind
+* v-on: can be replaced with @
+```HTML
+<button v-on:click="clickAdd(5)">Add 5</button>
+<button @click="clickAdd(5)">Add 5</button>
+```
+* v-bind can be replaced with :
+```HTML
+<div v-bind:class="{ active: isActive }"></div>
+<div :class="{ active: isActive }"></div>
+```
+### Styling
+## Inline Styling
+* 
