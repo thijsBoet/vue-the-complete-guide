@@ -107,8 +107,8 @@ const HTMLtags = "<h2>Heading</h2>"
 <!-- shorthand -->
 <input type="text" v-model="variableName">
 ```
-### Regular, computed and watch methods
-## Computed Methods
+## Regular, computed and watch methods
+### Computed Methods
 * Executing methods in the HTML code results in reloading everything on every event, because Vue cannot tell its dependencies. 
 ```HTML
 <p>Your Name: {{fullname()}}</p>
@@ -122,7 +122,7 @@ const HTMLtags = "<h2>Heading</h2>"
   },
 ```
 * Don't use () when calling these computed methods
-## Watchers
+### Watchers
 * To have even more control over the variables used in these methods. Use watch methods.
 ```javascript
   watch: {
@@ -151,7 +151,7 @@ watch: {
 },
 ```
 * Examples like sending HTTP request and setting timers are great methods that can be triggered by watchers.
-## Methods vs Computed vs Watch
+### Methods vs Computed vs Watch
 * Methods are great for data binding or event binding, they are re-rendered every cycle
 * Computed method are great if you want to calculate some output value dynamically. Data based on depended data that needs to be re-executed when the dependant data changes.
 * Watchers are great when code needs to be executed, because a property changes and you want to specify this change precisely.
@@ -166,10 +166,10 @@ watch: {
 <div v-bind:class="{ active: isActive }"></div>
 <div :class="{ active: isActive }"></div>
 ```
-### Class and Style Bindings
-## Inline Styling
+## Class and Style Bindings
+### Inline Styling
 * You can use :style="{camelCasedProperty: value}" directive to add inline styles. They overwrite all other styles therefore usually bad practice.
-## :class directive
+### :class directive
 * To add regular classes add an object (inline HTML, ternary, array or computed) to the :class directive.
 ```HTML
 <!-- Inline -->
