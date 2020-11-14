@@ -166,6 +166,27 @@ watch: {
 <div v-bind:class="{ active: isActive }"></div>
 <div :class="{ active: isActive }"></div>
 ```
-### Styling
+### Class and Style Bindings
 ## Inline Styling
-* 
+* You can use :style="{camelCasedProperty: value}" directive to add inline styles. They overwrite all other styles therefore usually bad practice.
+## :class directive
+* To add regular classes add an object (inline HTML, ternary, array or computed) to the :class directive.
+```HTML
+<!-- Inline -->
+<div :class="{ className: true/false, 'text-danger': hasError }"></div>
+<!-- Ternary -->
+<div v-bind:class="isActive ? activeClass : '', errorClass"></div>
+<!-- Array -->
+<div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+<!-- Computed -->
+```
+```javascript
+computed: {
+  paraClasses() {
+    return {
+      visible: this.paragraphIsVisible,
+      hidden: !this.paragraphIsVisible,
+    };
+  }
+},
+```
