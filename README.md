@@ -202,7 +202,7 @@ computed: {
   <li>{{goal}}</li>
 </ul>
 ```
-* Without the else condition v-show can be used which doesn't remove the HTML conditionally, but hides it, using "display: none" css.
+* Without the else condition v-show can be used which doesn't remove the HTML conditionally, but hides it, using "display: none" css selector.
 * Best used when visibility status changes a lot, like a toggle visibility button. (better performance)
 ```HTML
 <p v-show="goals.length === 0">Please add some goals!</p>
@@ -239,3 +239,10 @@ person = {name: 'Bill', age: 65}
 </ul>
 ```
 ### Lists and keys
+* To add an unique identifier to every item in the for loop bind the :key directive to the HTML.
+* This is considered good practice and prevent bugs with changing indexes.
+```HTML
+<ul>
+  <li v-for="(goal, index) in goals" :key="index">{{ goal }}</li>
+</ul>
+```
