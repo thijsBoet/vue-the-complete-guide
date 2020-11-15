@@ -40,9 +40,7 @@ const app = Vue.createApp({
       vueLink: "https://vuejs.org/",
     };
   },
-```
-* To reference variables use the this keyword
-```javascript
+// To reference variables in createApp use the this keyword!
   methods: {
     addGoal() {
       this.goals.push(this.enteredValue);
@@ -191,7 +189,7 @@ computed: {
 },
 ```
 ## Conditional Rendering & Lists
-### Conditionals using v-if/v-show and v-else directive
+### Conditionals using v-if/v-show, v-else-if and v-else directive
 * Use v-if directive, to conditionally rendered HTML.
 ```HTML
 <p v-if="goals.length === 0">Please add some goals!</p>
