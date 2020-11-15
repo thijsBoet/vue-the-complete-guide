@@ -178,9 +178,9 @@ watch: {
 <div v-bind:class="isActive ? activeClass : '', errorClass"></div>
 <!-- Array -->
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
-<!-- Computed -->
 ```
 ```javascript
+// Computed
 computed: {
   paraClasses() {
     return {
@@ -190,3 +190,52 @@ computed: {
   }
 },
 ```
+## Conditional Rendering & Lists
+### Conditionals using v-if/v-show and v-else directive
+* Use v-if directive, to conditionally rendered HTML.
+```HTML
+<p v-if="goals.length === 0">Please add some goals!</p>
+```
+* Use v-else directive, to render the else condition. (must be used directly after v-if condition)
+```HTML
+<ul v-else>
+  <li>{{goal}}</li>
+</ul>
+```
+* Without the else condition v-show can be used which doesn't remove the HTML conditionally, but hides it, using "display: none" css.
+* Best used when visibility status changes a lot, like a toggle visibility button. (better performance)
+```HTML
+<p v-show="goals.length === 0">Please add some goals!</p>
+```
+### Loop over Lists
+* Use v-for directive to loop over lists.
+* We only have access to the looped variable inside the HTML element.
+* Using "(variable, index) in variables" we can access the index.
+```HTML
+<ul>
+  <li v-for="(goal, index) in goals">{{ goal }} - {{ index }}</li>
+</ul>
+```
+* We can also loop through objects.
+* Using "(value, key) in object" we can access the key name.
+```HTML
+person = {name: 'Bill', age: 65}
+<ul>
+  <li v-for="(value, key, index) in person">{{ key }}: {{ person }}</li>
+</ul>
+```
+* We can also loop through a range of numbers with v-for
+```HTML
+<ul>
+  <li v-for="num in 100">{{ num }}</li>
+</ul>
+```
+### Remove items from Lists
+* We can add an @click method to every v-for iterations. 
+* Every iteration can receive an index from the v-for loop.
+```HTML
+<ul>
+  <li v-for="(goal, index) in goals" @click="removeGoal(index)">{{ goal }}</li>
+</ul>
+```
+### Lists and keys
