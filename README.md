@@ -105,7 +105,7 @@ const HTMLtags = "<h2>Heading</h2>"
 <!-- shorthand -->
 <input type="text" v-model="variableName">
 ```
-## Regular, computed and watch methods
+## Computed and watch methods
 ### Computed Methods
 * Executing methods in the HTML code results in reloading everything on every event, because Vue cannot tell its dependencies. 
 ```HTML
