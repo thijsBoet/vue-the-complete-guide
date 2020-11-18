@@ -244,3 +244,61 @@ person = {name: 'Bill', age: 65}
   <li v-for="(goal, index) in goals" :key="index">{{ goal }}</li>
 </ul>
 ```
+## Vue Lifecycle Instances: execute code at a certain point in he lifecycle 
+1. createApp({})
+2. beforeCreate()
+3. created()      => knows data object nothing rendered yet
+Compiling template
+4. beforeMount()  => right before rendering
+5. mounted()      => hands down instructions to the browser that renders it
+Mounted Vue Instance
+Data Changes
+6. beforeUpdate()
+7. updated()      => rendered on screen, because it is already mounted
+Instance can be Unmounted
+8. beforeUnmount()
+9. unmounted()
+```javascript
+app = Vue.createApp({
+  data() {
+    return {
+      currentUserInput: '',
+      message: 'Vue is great!',
+    };
+  },
+  methods: {
+    saveInput(event) {
+      this.currentUserInput = event.target.value;
+    },
+    setText() {
+      this.message = this.$refs.userText.value;
+    },
+  },
+  beforeCreate () {
+    console.log('beforeCreate(eg. HTTP request)');
+  },
+  created() {
+    console.log('created()')
+  },
+  beforeMount () {
+    console.log("beforeMount()");
+  },
+  mounted () {
+    console.log("mounted()");
+  },
+  beforeUpdate () {
+    console.log("beforeUpdate(changes not yet rendered)");
+  },
+  updated () {
+    console.log("updated(updated changes rendered)");
+  },
+  beforeUnmount () {
+    console.log("before unmount");
+  },
+  unmounted() {
+    console.log("unmounted")
+  }
+}).mount('#app');;
+
+setTimeout(() => app.unmount("#app"), 3000);
+```
