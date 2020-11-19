@@ -278,27 +278,72 @@ app = Vue.createApp({
     console.log('beforeCreate(eg. HTTP request)');
   },
   created() {
-    console.log('created()')
+    console.log('created(data and methods loaded, but no rendering)')
   },
   beforeMount () {
-    console.log("beforeMount()");
+    console.log("beforeMount(just before rendering app)");
   },
   mounted () {
-    console.log("mounted()");
+    console.log("mounted(rendering app)");
   },
   beforeUpdate () {
     console.log("beforeUpdate(changes not yet rendered)");
   },
   updated () {
-    console.log("updated(updated changes rendered)");
+    console.log("updated(updated changes rendered, because already mounted)");
   },
   beforeUnmount () {
-    console.log("before unmount");
+    console.log("beforeUnmount(just before unmounting)");
   },
   unmounted() {
-    console.log("unmounted")
+    console.log("unmounted(app unmounted)")
   }
 }).mount('#app');;
 
 setTimeout(() => app.unmount("#app"), 3000);
+```
+## Components
+### We use components to divide up code in smaller re-usable pieces
+* Always use multi-word identifiers with a dash in between
+* To prevent name collisions with HTML tags ('e.g. form, input')
+* Second argument is a config object just like in Vue.createApp({})
+* We use a template to interpolate data into the HTML
+* We define the data we want to render in the data object
+```javascript
+app.component("friend-contact", {
+  template: `
+    <li>
+      <h2>{{friend.name}}</h2>
+      <button @click=toggleDetails>{{detailsAreVisible ? 'Hide' : 'Show'}}</button>
+      <ul v-if="detailsAreVisible">
+        <li><strong>Phone:</strong> {{friend.phone}}</li>
+        <li><strong>Email:</strong> {{friend.email}}</li>
+      </ul>
+    </li>
+  `,
+  data() {
+    return {
+      detailsAreVisible: false,
+      friend: {
+          id: 3,
+          name: "Bill Gates",
+          phone: "0356 4878 891",
+          email: "billgates@microsoft.com",
+        },
+    };
+  },
+  methods: {
+    toggleDetails() {
+      this.detailsAreVisible = !this.detailsAreVisible;
+    },
+  },
+});
+```
+* We use the "friend-contact" identifier as an HTML tag to hook it up
+```HTML
+<section id="app">
+  <ul>
+    <friend-contact></friend-contact>
+  </ul>
+</section>
 ```
