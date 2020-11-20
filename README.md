@@ -347,3 +347,56 @@ app.component("friend-contact", {
   </ul>
 </section>
 ```
+## Vue CLI
+### Advantages over CDN import
+1. Auto detects changes and reloads browser page
+2. Better auto-completion in IDE
+3. Splits code into multiple files and export/import via ES modules
+### Creating and running Vue cli App
+* We create an app with the Vue cli entering "vue create vue-app-name" into the terminal
+* We run the app by moving into the app folder and running "npm run serve" or "yarn serve" in the terminal
+### Exploring folder and file structure of the App
+* The src folder contains all files we are going to write code in
+* main.js & App.vue are the entry point of the app
+* package.json lists all the dependencies that are installed into the node_modules folder and the scripts that can be run like "serve, build and lint"
+```javascript
+// ========== main.js ============
+// Vue.createApp({}) is imported
+import { createApp } from 'vue'
+// Entry point App.vue is imported
+import App from './App.vue'
+
+// App is mounted into public/index.html '#app'
+createApp(App).mount('#app');
+```
+### App.vue
+* App.vue is structured into three parts
+1. <template> contains the injected HTML
+2. <script> the data object, components and other JS 
+3. <style> contains general style information
+```HTML
+<template>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
+</template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  ...
+  margin-top: 60px;
+}
+</style>
+
+```
