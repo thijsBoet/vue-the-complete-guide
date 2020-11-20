@@ -371,9 +371,9 @@ createApp(App).mount('#app');
 ```
 ### App.vue
 * App.vue is structured into three parts
-1. <template> contains the injected HTML
-2. <script> the data object, components and other JS 
-3. <style> contains general style information
+1. <template>contains the injected HTML
+2. <script>contains the data object, components and other JS 
+3. <style>contains general style information
 ```HTML
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
