@@ -398,5 +398,83 @@ export default {
   margin-top: 60px;
 }
 </style>
-
+```
+### main.js
+```javascript
+import { createApp } from 'vue';
+// Import child components
+import App from './App.vue';
+import UserContact from './components/UserContact.vue';
+import NewUser from './components/NewUser.vue';
+// Create app
+const app = createApp(App);
+// Mount child components of app
+app.component('user-contact', UserContact);
+app.component('new-user', NewUser);
+// Mount app in HTML id #app
+app.mount('#app');
+```
+## Component communication
+### Parent => Child communication
+* We use props to communicate with child components
+* Parent component
+```HTML
+<!-- Use kebab-case for properties -->
+<user-contact
+  v-for="user in users"
+  :key="user.id"
+  :id="user.id"
+  :name="user.name"
+  :phone-number="user.phone"
+  :mailing-list=user.mailing,
+  :email-address="user.email"
+></user-contact>
+```
+* Child component
+```javascript
+// Use camelCase for properties to comply with JS standard
+props: ["name", "phoneNumber", "emailAddress"],
+// More specific tests using object
+props: {
+    id: { type: Number, required: true, },
+    name: String,
+    phoneNumber: { type: String, required: true, },
+    emailAddress: { type: String, required: true,
+      validator: (value) =>
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+          value)? true : false,},
+    mailingList: {Boolean, required: false, default: false}
+  },
+```
+* Now we can access these properties in the child component using {{name}} {{phoneNumber}} and {{emailAddress}}
+### Changing Props
+* Props should be only mutated in the parent component, because Vue uses the uni-directional dataflow concept
+* To change parent properties with child components use click listeners with the $emit keyword to emit an event in the parent app and the parents data
+* Child component
+```HTML
+<li>
+  <strong v-if="mailingList">Wants to receive monthly Email</strong>
+  <button @click="toggleMailingStatus">Toggle Mail List</button>
+</li>
+```
+``` javascript
+methods: {
+  toggleMailingStatus() {
+    this.$emit("toggle-mailing-list", this.id);
+  },
+}
+```
+* Parent component
+```HTML
+<user-contact
+  :mailing-list=user.mailing,
+  :email-address="user.email"
+  @toggle-mailing-list="toggleMailingStatus"
+></user-contact>
+```
+```javascript
+toggleMailingStatus(userId) {
+  const identifiedUser = this.users.find(user => user.id === userId);
+  identifiedUser.mailingList = !identifiedUser.mailingList;
+},
 ```
