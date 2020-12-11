@@ -417,7 +417,7 @@ app.mount('#app');
 ## Component communication
 ### Parent => Child communication
 * We use props to communicate with child components
-* Parent component
+##### Parent component
 ```HTML
 <!-- Use kebab-case for properties -->
 <user-contact
@@ -430,7 +430,7 @@ app.mount('#app');
   :email-address="user.email"
 ></user-contact>
 ```
-* Child component
+##### Child component
 ```javascript
 // Use camelCase for properties to comply with JS standard
 props: ["name", "phoneNumber", "emailAddress"],
@@ -450,7 +450,7 @@ props: {
 ### Changing Props
 * Props should be only mutated in the parent component, because Vue uses the uni-directional dataflow concept
 * To change parent properties with child components use click listeners with the $emit keyword to emit an event in the parent app and the parents data
-* Child component
+##### Child component
 ```HTML
 <li>
   <strong v-if="mailingList">Wants to receive monthly Email</strong>
@@ -464,7 +464,7 @@ methods: {
   },
 }
 ```
-* Parent component
+##### Parent component
 ```HTML
 <user-contact
   :mailing-list=user.mailing,
@@ -477,4 +477,53 @@ toggleMailingStatus(userId) {
   const identifiedUser = this.users.find(user => user.id === userId);
   identifiedUser.mailingList = !identifiedUser.mailingList;
 },
+```
+### Provide & Inject
+* We can provide data passing trough multiple components  using provide and inject 
+```javascript
+data() {
+    return {
+      topics: [
+        {
+          id: 1,
+          title: 'Vue',
+          description: 'VueJS is an open source progressive JavaScript framework used to develop interactive web interfaces.',
+        },
+        {
+          id: 2,
+          title: 'React',
+          description:
+            'React is an open-source, front end, JavaScript library for building user interfaces or UI components,',
+        },
+      ],
+    };
+  },
+  provide() {
+    return {
+      topics: this.topics,
+    };
+  },
+```
+* Pass trough component 
+```javascript
+export default {
+  inject: ["selectTopic"],
+  props: ['id', 'topicName', 'description'],
+  emits: ['select-topic'],
+};
+```
+* Display component
+```HTML
+<template>
+  <section>
+    <h2>{{ topicTitle }}</h2>
+    <p>{{ text }}</p>
+  </section>
+</template>
+
+<script>
+export default {
+  props: ['topicTitle', 'text'],
+};
+</script>
 ```
